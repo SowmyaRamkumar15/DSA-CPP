@@ -1,0 +1,69 @@
+Sample test cases :
+Input 1 :
+6
+25 36 47 58 69 80
+19
+Output 1 :
+Original data points: 25 36 47 58 69 80 
+Updated data points: 19 25 36 47 58 69 80 
+Input 2 :
+2
+50 100 
+75
+Output 2 :
+Original data points: 50 100 
+Updated data points: 50 75 100 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+// You are using GCC
+#include <iostream>  
+using namespace std;  
+struct Node {  
+    int data;  
+    Node* next;  
+};  
+
+Node* head = nullptr;  
+void insertSorted(int value) {  
+    Node* newNode = new Node();   
+    newNode->data = value;   
+    newNode->next = nullptr;  
+    if (head == nullptr || head->data >= value) {  
+        newNode->next = head;  
+        head = newNode;   
+    }   
+    else {  
+          
+        Node* current = head;  
+        while (current->next != nullptr && current->next->data < value) {  
+            current = current->next;  
+        }  
+        newNode->next = current->next;   
+        current->next = newNode;   
+    }  
+}  
+void printList() {  
+    Node* temp = head;  
+    while (temp != nullptr) {   
+        cout << temp->data << " ";  
+        temp = temp->next; 
+    }  
+}  
+int main() {  
+    int n;  
+    cin >> n;  
+    for (int i = 0; i < n; i++) {  
+        int value;  
+        cin >> value; 
+        insertSorted(value); 
+    }  
+    cout << "Original data points: ";  
+    printList();  
+    cout << endl;  
+    int newData;  
+    cin >> newData;  
+    insertSorted(newData);  
+    cout << "Updated data points: ";  
+    printList();  
+    cout << endl;  
+    return 0;  
+}
