@@ -61,6 +61,64 @@ void insertMiddle()
     prev->next=newNode;
     newNode->next = temp;
 }
+void deleteFirst()
+{
+    if(head == NULL)
+    {
+        cout<<"List is Empty\n";
+    }
+    else if(head == tail) //Single Node Deletion
+    {
+        delete head;
+        head = tail = NULL;
+    }
+    else
+    {
+        Node *temp=head;
+        head=head->next;
+        tail->next=head;
+        delete temp;
+    }
+}
+void deleteEnd()
+{
+    if(head == NULL)
+    {
+        cout<<"List is Empty\n";
+    }
+    else if(head == tail)//Single node deletion,List becomes empty
+    {
+        delete(head);
+        head = tail = NULL;
+    }
+    else
+    {
+        Node *temp = head;
+        Node *prev = head;
+        while(temp->next != head)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+        tail = prev;
+        tail->next = head;
+        delete temp;
+    }
+}
+void deleteMiddle()
+{
+    int pos;
+    cin>>pos;
+    Node *temp=head;
+    Node *prev=head;
+    while(--pos)
+    {
+        prev=temp;
+        temp=temp->next;
+    }
+    prev->next=temp->next;
+    delete(temp);
+}
 void find()
 {
     Node *t=head;
