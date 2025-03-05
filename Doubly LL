@@ -1,0 +1,63 @@
+// You are using GCC
+#include<iostream>
+using namespace std;
+struct Node
+{
+    int data;
+    Node *next;
+    Node *prev;
+};
+Node *head=nullptr;
+void insertBegin(int value)
+{
+    Node *newNode=new Node;
+    newNode->data=value;
+    newNode->prev=NULL;
+    newNode->next=head;
+    if(head!=nullptr)
+    {
+      head->prev=newNode; 
+    }
+      head=newNode;
+    
+}
+
+void printback()
+{
+    Node *temp=head;
+    while(temp->next!=nullptr)
+    {
+        temp=temp->next;
+    }
+    while(temp!=nullptr)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->prev;
+    }
+    cout<<endl;
+}
+void printforw()
+{
+    Node *temp=head;
+    while(temp!=nullptr)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    int num;
+    cin>>num;
+    cout<<"Doubly linked list forwards: ";
+    for(int i=0;i<num;i++)
+    {
+        int value;
+        cin>>value;
+        insertBegin(value);
+    }
+    printforw();
+    cout<<"Doubly linked list backwards: ";
+    printback();
+}
