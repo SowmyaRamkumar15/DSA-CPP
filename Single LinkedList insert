@@ -1,0 +1,97 @@
+#include<iostream>
+using namespace std;
+struct Node
+{
+    int data;
+    Node *next;
+};
+Node *head=NULL;
+void insertBeginning()
+{
+    int value;
+    cin>>value;
+    Node *newNode= new Node;
+    newNode->data=value;
+    newNode->next=head;
+    if(head == NULL)
+    {
+        head = newNode;
+    }
+    else
+    {
+        newNode->next=head;
+        head = newNode;
+    }
+}
+void insertLast(int value)
+{
+    Node *newNode=new Node;
+    newNode->data=value;
+    newNode->next=NULL;
+    if(head==NULL)
+    {
+        head=newNode;
+    }
+    else
+    {
+        Node *temp=head;
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        temp->next=newNode;
+    }
+}
+void insertMiddle()
+{
+  int value;
+    cin>>value;
+    int pos;
+    cin>>pos;
+    Node *newNode = new Node();
+    newNode->data = value;
+    newNode->next = NULL;
+    Node *temp = head;
+    Node *prev = head;
+    while(--pos)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+    prev->next=newNode;
+    newNode->next = temp;
+}
+void find()
+{
+    Node *t=head;
+    head=head->next;
+    t->next=NULL;
+    Node *temp=head;
+    while(temp->next!=nullptr)
+    {
+        temp=temp->next;
+    }
+    temp->next=t;
+}
+void print()
+{
+    Node *temp = head;
+    while(temp != NULL)
+    {
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+    
+}
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        insertBeginning();
+    }
+    print();
+    return 0;
+}
