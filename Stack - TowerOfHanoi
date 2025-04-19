@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+void TOH(int n, string Sour, string Aux, string Des)
+{
+    if (n == 1) 
+    {
+        cout << "Shift " << n << " from " << Sour << " to " << Des << endl;
+        return;
+    }
+    TOH(n - 1, Sour, Des, Aux);
+    cout << "Shift " << n << " from " << Sour << " to " << Des << endl;
+    TOH(n - 1, Aux, Sour, Des);
+}
+int main()
+{
+    int n;
+    cin >> n;
+    TOH(n, "Red", "Pink", "Blue");
+    return 0;
+}
