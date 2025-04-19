@@ -1,3 +1,23 @@
+//Input:
+4
+Output:
+Shift 1 from Red to Pink
+Shift 2 from Red to Blue
+Shift 1 from Pink to Blue
+Shift 3 from Red to Pink
+Shift 1 from Blue to Red
+Shift 2 from Blue to Pink
+Shift 1 from Red to Pink
+Shift 4 from Red to Blue
+Shift 1 from Pink to Blue
+Shift 2 from Pink to Red
+Shift 1 from Blue to Red
+Shift 3 from Pink to Blue
+Shift 1 from Red to Pink
+Shift 2 from Red to Blue
+Shift 1 from Pink to Blue
+//
+
 #include <iostream>
 using namespace std;
 void TOH(int n, string Sour, string Aux, string Des)
