@@ -1,0 +1,74 @@
+Palindrome or not 
+
+Input 
+MOM
+Output
+MOM is palindrome
+
+------------------------------------------
+
+#include<iostream>
+#include<string>
+using namespace std;
+const int Size=500;
+int stack[Size];
+int top=-1;
+bool isEmpty()
+{
+    return (top==-1);
+}
+bool isFull()
+{
+    return(top==Size-1);
+}
+void push(char s)
+{
+    if(isFull())
+    {
+        cout<<"stack overflow";
+    }
+    else
+    {
+        stack[++top]=s;
+    }
+}
+char pop()
+{
+    if(isEmpty())
+    {
+        cout<<"stack underflow";
+        return '\0';
+    }
+    else
+    {
+        return stack[top--];
+    }
+}
+bool ispail(const string&s)
+{
+    for(char c:s)
+    {
+        push(c);
+    }
+    for(char c:s)
+    {
+        if(pop() != c)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+int main()
+{
+    string s;
+    cin>>s;
+    if(ispail(s))
+    {
+        cout<<s<<" is palindrome";
+    }
+    else
+    {
+        cout<<s<<" is not a palindrome";
+    }
+}
