@@ -1,0 +1,91 @@
+Dequeue() operation using the linked list
+*Print the Queue after Dequeue Operation
+*if underflow occurs print Underflow and print Queue is empty
+
+Input :
+5
+1 2 3 4 5
+
+Output :
+2 3 4 5 
+-----------------------------------------------------
+
+#include<iostream>
+using namespace std;
+#define MAX 25
+
+int queue[MAX];
+int rear = - 1;
+int front = - 1;
+bool isEmpty()
+{
+    return(front==-1&&rear==-1);
+}
+bool isFull()
+{
+    return(rear==MAX-1);
+}
+void enqueue(int val)  //insertfirst
+{
+    if(isFull())
+    {
+        cout<<"Queue overflows";
+    }
+    else if(isEmpty())
+    {
+        front=rear=0;
+        queue[rear]=val;
+    }
+    else
+    {
+        rear++;
+        queue[rear]=val;
+    }
+}
+void dequeue()  //deletefirst
+{
+    if(isEmpty())
+    {
+        cout<<"Underflow"<<endl;
+    }
+    else if(front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        front++;
+        if(front>rear)
+        {
+            front=rear-1;
+        }
+    }
+}
+void display()
+{
+    if(isEmpty())
+    {
+        cout<<"Queue is empty";
+    }
+    else
+    {
+        for(int i=front;i<=rear;i++)
+        {
+            cout<<queue[i]<<" ";
+        }
+        cout<<endl;
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int v;
+    for(int i=0;i<n;i++)
+    {
+        cin>>v;
+        enqueue(v);
+    }
+    dequeue();
+    display();
+}
