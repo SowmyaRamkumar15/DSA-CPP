@@ -1,0 +1,18 @@
+Queue is a linear data structure that follows the FIFO principle:
+->>FIFO → First In, First Out
+->>The element that is inserted first is removed first.
+
+Basic Operations on Queue:
+Operation     	  Description
+enqueue()     	  Add an element to the rear of the queue
+dequeue()	        Remove an element from the front of the queue
+peek() /front()	  View the front element without removing it
+isEmpty()	        Check if the queue is empty
+
+
+Queue_Type	      Insert Position	              Delete Position	              Special Feature
+Linear Queue	    Rear	                        Front	                        Simple FIFO
+Circular Queue	  Rear (wraps)	                Front (wraps)	                Space reused
+Priority Queue	  Any (based on priority)	      Front (highest priority)	    Priority-based removal
+Deque	            Both ends	                    Both ends                     Max flexibility
+
