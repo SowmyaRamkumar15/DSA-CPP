@@ -1,0 +1,87 @@
+The first line prints the front element of the queue.
+The next line prints the rear element.
+
+Perform a dequeue operation:
+
+The next line prints the front element.
+The next line prints the rear element.
+
+Input :
+5
+12 45 78 36 95
+Output :
+12
+95
+45
+95
+
+------------------------------------------------------------------
+
+#include<iostream>
+using namespace std;
+struct Node
+{
+    int data;
+    Node *next;
+};
+Node *head=nullptr;
+Node *tail=nullptr;
+void insertLast()
+{
+    int val;
+    cin>>val;
+    Node *newNode=new Node();
+    newNode->data=val;
+    newNode->next=NULL;
+    if(head==nullptr)
+    {
+        head=tail=newNode;
+    }
+    else
+    {
+        tail->next = newNode;
+        tail=newNode;
+        // tail->next=head;
+    }
+}
+void deleteFirst()
+{
+    if(head==NULL)
+    {
+        cout<<"Queue underflow";
+    }
+    else if(head==tail)
+    {
+        delete head;
+        head=tail=nullptr;
+    }
+    else
+    {
+        Node *temp=head;
+        head=head->next;
+        delete temp;
+    }
+}
+void displayFirst()
+{
+    cout<<head->data<<endl;   
+}
+void displayLast()
+{
+    cout<<tail->data<<endl;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        insertLast();
+    }
+    displayFirst();
+    deleteFirst();
+    displayLast();
+    displayFirst();
+    displayLast();
+    // deleteLast();
+}
