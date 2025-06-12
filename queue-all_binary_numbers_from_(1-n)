@@ -1,0 +1,99 @@
+Given a number n, write a function that generates and prints all binary numbers with decimal values from 1 to n using Queue.
+
+Input :
+5
+Output :
+1
+10
+11
+100
+101
+
+-------------------------------------------------
+
+#include<iostream>
+using namespace std;
+#define sizee 100
+string queue[sizee];
+int front =-1;
+int rear=-1;
+bool isFull()
+{
+    return(rear==sizee-1);
+}
+bool isEmpty()
+{
+    return(front==-1&&rear==-1);
+}
+void enqueue(string val)
+{
+    if(isFull())
+    {
+        cout<<"Queue overflow";
+    }
+    else if(isEmpty())
+    {
+        front=rear=0;
+        queue[rear]=val;
+    }
+    else
+    {
+        rear++;
+        queue[rear]=val;
+    }
+}
+string dequeue()
+{
+    if(isEmpty())
+    {
+        cout<<"Queue is empty"<<endl;
+        return "";
+    }
+    string val = queue[front];
+    if(front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        front++;
+        // queue[rear]=val;
+    }
+    return val;
+}
+void Binary(int n)
+{
+    enqueue("1");
+    for(int count=0;count<n;count++)
+    {
+        string num=dequeue();
+        cout<<num<<endl;
+        enqueue(num+"0");
+        enqueue(num+"1");
+    }
+}
+void display()
+{
+    if(isEmpty())
+    {
+        cout<<"Queue is empty"<<endl;
+    }
+    else
+    {
+        for(int i=front;i<=rear;i++)
+        {
+            cout<<queue[i]<<endl;
+        }
+    }cout<<endl;
+}
+int main()
+{
+    int v;
+    cin>>v;
+    if(v>0)
+    {
+        Binary(v);
+    }
+    // display();
+    
+}
