@@ -1,0 +1,65 @@
+Postfix Expression
+
+Input
+10 2 3 + *
+
+Output
+50
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int st[100];
+int top=-1;
+void push(int v)
+{
+    st[++top]=v;
+}
+int pop()
+{
+    return st[top--];
+}
+int evaluatePostfix(string exp) {
+    for (int i=0;i<exp.length();i++) {
+        if (isdigit(exp[i])) {
+            int num = 0;
+            while(isdigit(exp[i]))
+			{
+                num=num*10 + (int)(exp[i]-'0');
+				i++;
+			}
+			i--;
+            push(num);
+        }
+        else if(exp[i] == ' ')
+        {
+            continue;
+        }
+        else
+        {
+            int operand2 = st[top];
+            pop();
+            int operand1 = st[top];
+            pop();
+            switch (exp[i])
+            {
+                case '+':
+                	push(operand1 + operand2);break;
+                case '-':
+                	push(operand1 - operand2);break;
+                case '*':
+                	push(operand1 * operand2);break;
+                case '/':
+                	push(operand1 / operand2);break;
+            }
+        }
+    }
+    return st[top];
+}
+int main() {
+    string expression;
+    getline(cin, expression);
+    int result = evaluatePostfix(expression);
+    cout << result << endl;
+    return 0;
+}
