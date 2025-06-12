@@ -1,0 +1,111 @@
+Stack
+
+If the choice is 1 (Push), there is no output.
+If the choice is 2 (Pop) and the stack is empty, print "Stack is empty!".
+If the choice is 3 (Check if Full), and the stack is full, print "Stack is full!", and if the stack is not full, print "Stack is not full"
+If the choice is 4 (Check if Empty), and the stack is empty, print "Stack is empty!", and if the stack is not empty, print "Stack is not empty"
+If the choice is 5 (Exit), the program should terminate immediately.
+If the choice is more than 6, it prints "Invalid choice".
+
+Input :
+1 2
+1 6
+2
+3
+4
+5
+Output :
+Stack is not full
+Stack is not empty
+
+---------------------------------------------------------------------------------------------------------
+#include<iostream>
+using namespace std;
+
+const int Size=10;
+int st[Size];
+int top=-1;
+
+bool isEmpty()
+{
+    return (top==-1);
+}
+bool isFull()
+{
+    return (top==Size-1);
+}
+void push(int value)
+{
+    if(isFull())
+    {
+        cout<<"stack is full!";
+    }
+    else
+    {
+        st[++top]=value;
+    }
+}
+void pop()
+{
+    if(isEmpty())
+    {
+        cout<<"stack is empty!";
+    }
+    else
+    {
+        top--;
+    }
+}
+void checkFull()
+{
+    if(isFull())
+    {
+        cout<<"stack is full!"<<endl;
+    }
+    else
+    {
+        cout<<"stack is not full"<<endl;
+    }
+}
+void checkEmpty()
+{
+    if(isEmpty())
+    {
+        cout<<"stack is empty!"<<endl;
+    }
+    else
+    {
+        cout<<"stack is not empty"<<endl;
+    }
+}
+int main()
+{
+    int choice,value;
+    while(true)
+    {
+        cin>>choice;
+    
+    switch(choice)
+    {
+        case 1:
+            cin>>value;
+            push(value);
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            checkFull();
+            break;
+        case 4:
+            checkEmpty();
+            break;
+        case 5:
+            return 0;
+        default :
+            cout<<"Invalid choice"<<endl;
+            break;
+    }
+    // cout<<endl;
+    }
+}
