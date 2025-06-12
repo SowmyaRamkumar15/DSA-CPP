@@ -1,0 +1,94 @@
+Input
+140
+255
+145
+985
+215
+
+Output
+140 255 145 985 215 
+145 985 215 
+
+--------------------------------------------------------------------
+
+#include<iostream>
+using namespace std;
+#define sizee 5
+int queue[sizee];
+int front=-1;
+int rear=-1;
+bool isFull()
+{
+    return(rear==sizee-1);
+}
+bool isEmpty()
+{
+    return(front== -1 && rear==-1);
+}
+void enqueue(int val)
+{
+    if(isFull())
+    {
+        cout<<"Queue overflows";
+    }
+    else if(isEmpty())
+    {
+        front=rear=0;
+        queue[rear]=val;
+    }
+    else
+    {
+        rear++;
+        queue[rear]=val;
+    }
+}
+void dequeue()  //deletefirst
+{
+    if(isEmpty())
+    {
+        cout<<"Queue underflow"<<endl;
+    }
+    else if(front==rear)
+    {
+        front=rear=-1;
+    }
+    else 
+    {
+        // cout<<queue[front]<<" ";
+        front++;
+    }
+}
+void display()
+{
+    if(isEmpty())
+    {
+        cout<<"Queue is empty"<<endl;
+    }
+    else
+    {
+        for(int i=front;i<=rear;i++)
+        {
+            cout<<queue[i]<<" ";
+        }
+    }
+    cout<<endl;
+}
+int main()
+{
+    int val;
+    for(int i=0;i<5;i++)
+    {
+        cin>>val;
+        enqueue(val);
+    }
+    display();
+    dequeue();
+    dequeue();
+    display();
+    for(int i=0;i<3;i++)
+    {
+        dequeue();
+    }
+    display();
+    return 0;
+}
