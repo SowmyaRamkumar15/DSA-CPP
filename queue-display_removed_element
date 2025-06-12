@@ -1,0 +1,106 @@
+displays the element removed from the queue--insert and delete an element from the queue
+
+The first line of input integer N consists of capacity of the queue
+The second line of input integer O consists of no.of element to be inserted in the queue
+The next line of the input consists of the number of elements to be deleted from the list
+
+Input :
+5
+13
+14
+15
+16
+17
+4
+
+Output :
+Element deleted from queue is : 13
+Element deleted from queue is : 14
+Element deleted from queue is : 15
+Element deleted from queue is : 16
+
+-------------------------------------------------------
+
+// You are using GCC
+#include<iostream>
+using namespace std;
+#define sizes 100
+int queue[sizes];
+int front=-1;
+int rear=-1;
+bool isEmpty()
+{
+    return(front==-1&&rear==-1);
+}
+bool isFull()
+{
+    return(rear==sizes-1);
+}
+void enqueue(int val)
+{
+    if(isFull())
+    {
+        cout<<"Queue overflow";
+    }
+    else if(isEmpty())
+    {
+        front=rear=0;
+        queue[rear]=val;
+    }
+    else
+    {
+        rear++;
+        queue[rear]=val;
+    }
+}
+void dequeue()
+{
+    if(isEmpty())
+    {
+        cout<<"queue underflow";
+        return;
+    }
+    else if(front==rear)
+    {
+        cout<<"Element deleted from queue is : "<<queue[front]<<endl;
+        front=rear=-1;
+    }
+    else
+    {
+        cout<<"Element deleted from queue is : "<<queue[front]<<endl;
+        front++;
+    }
+}
+void display()
+{
+    if(isEmpty()) 
+    {
+        cout<<"Queue is empty";
+    }
+    else
+    {
+        for(int i=front;i<=rear;i++)
+        {
+            cout<<queue[i]<<endl;
+        }
+    }
+}
+int main()
+{
+    int n,v;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>v;
+        enqueue(v);
+    }
+    //display();
+    int datadel;
+    cin >> datadel;
+    for(int i=0;i<datadel;i++)
+    {
+       
+        dequeue();
+    }
+    
+}
