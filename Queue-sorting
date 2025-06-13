@@ -1,0 +1,34 @@
+sort queue-priority queue
+
+Input  :
+7
+5 4 2 6 1 3 7
+
+Output  :
+Sorted queue: 
+1 2 3 4 5 6 7 
+
+-----------------------------------
+
+// You are using GCC
+#include<iostream>
+#include<queue>
+#include<vector>
+using namespace std;
+int main()
+{
+    int n,value;
+    cin>>n;
+    priority_queue<int,vector<int>,greater<int>> pq;
+    for(int i=0;i<n;i++)
+    {
+        cin>>value;
+        pq.push(value);
+    }
+    cout<<"Sorted queue:"<<endl;
+    while(!pq.empty())
+    {
+        cout<<pq.top()<<" ";
+        pq.pop();
+    }
+}
