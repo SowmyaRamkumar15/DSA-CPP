@@ -1,0 +1,81 @@
+ priority queue
+Input  :
+5
+4 2
+3 1
+6 4
+2 3
+1 5
+
+Output :
+Priority Queue: 3 4 2 6 1 
+Priority Queue: 4 2 6 1 
+
+--------------------------------------------------
+
+#include<iostream>
+using namespace std;
+#define MAX_SIZE 100
+struct Element
+{
+    int val;
+    int pri;
+};
+class PriorityQueue
+{
+    Element arr[MAX_SIZE];
+    int size;
+    public:
+    PriorityQueue()
+    {
+        size=0;
+    }
+    void insert(int val,int pri)
+    {
+        arr[size].val=val;
+        arr[size].pri=pri;
+        size++;
+    }
+    void removehp()
+    {
+        size--;
+    }
+    void arrange()
+    {
+        for(int i=0;i<size-1;i++)
+        {
+            for(int j=i+1;j<size;j++)
+            {
+                if(arr[i].pri<arr[j].pri)
+                {
+                    swap(arr[i],arr[j]);
+                }
+            }
+        }
+    }
+    void print()
+    {
+        cout<<"Priority Queue: ";
+        for(int i=size-1;i>=0;i--)
+        {
+            cout<<arr[i].val<<" ";
+        }
+        cout<<endl;
+    }
+};
+int main()
+{
+    PriorityQueue pq;
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        int val,pri;
+        cin>>val>>pri;
+        pq.insert(val,pri);
+    }
+    pq.arrange();
+    pq.print();
+    pq.removehp();
+    pq.print();
+}
