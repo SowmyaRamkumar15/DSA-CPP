@@ -1,0 +1,61 @@
+ reorder a queue--first two elements are taken into account in which the greatest among them will be swapped to the higher order followed by the next two element and so on
+
+Input  :
+16
+16 5 24 33 82 61 12 123 23 43 54 32 1234 76 876 54
+
+Output  :
+Reordered queue: 
+5 16 24 33 61 82 12 123 23 43 32 54 76 1234 54 876 
+
+-------------------------------------------------------------------
+
+// You are using GCC
+#include<iostream>
+#include<queue>
+using namespace std;
+
+int main() {
+    int n, val;
+    cin >> n;
+    queue<int> q;
+
+    // Input elements into the queue
+    for (int i = 0; i < n; ++i) {
+        cin >> val;
+        q.push(val);
+    }
+
+    queue<int> q2;
+
+    // Reorder the queue
+    while (q.size() >= 2) {
+        int first = q.front();
+        q.pop();
+        int second = q.front();
+        q.pop();
+
+        if (first > second) {
+            q2.push(second);
+            q2.push(first);
+        } else {
+            q2.push(first);
+            q2.push(second);
+        }
+    }
+
+    // If there's an odd number of elements, the last element remains in its position
+    if (!q.empty()) {
+        q2.push(q.front());
+        q.pop();
+    }
+
+    // Display the reordered queue
+    cout << "Reordered queue: "<<endl;
+    while (!q2.empty()) {
+        cout << q2.front() << " ";
+        q2.pop();
+    }
+
+    return 0;
+}
